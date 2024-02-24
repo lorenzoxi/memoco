@@ -1,0 +1,10 @@
+#ifndef TERMINATIONSCHEME_H
+#define TERMINATIONSCHEME_H
+
+enum TerminationScheme : unsigned int {
+    MAX_NUMBER_GENERATIONS = 0,
+    MAX_NUMBER_NOT_IMPROVEMENT = 1,
+    MAX_NUMBER_SECONDS = 2,
+};
+
+#endif //TERMINATIONSCHEME_H
