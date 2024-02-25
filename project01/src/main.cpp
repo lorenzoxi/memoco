@@ -96,7 +96,7 @@ int status;
 char errmsg[BUF_SIZE];
 
 void setupLP(CEnv env, Prob lp, int &current_var_position, const vector<vector<double> > &distance_matrix,
-             std::vector<arc> &ys, std::vector<arc> &xs, std::string timestamp, int lpcount) {
+             std::vector<arc> &ys, std::string timestamp, int lpcount) {
     current_var_position = 0;
     const int N = distance_matrix.size();
 
@@ -157,7 +157,6 @@ void setupLP(CEnv env, Prob lp, int &current_var_position, const vector<vector<d
             double cost = 0;
             CHECKED_CPX_CALL(CPXnewcols, env, lp, ccnt, &cost, &lb, &ub, &xtype, &xname);
 
-            xs.push_back({current_var_position, i, j});
             map_x[i][j] = current_var_position;
             current_var_position++;
         }
@@ -281,9 +280,8 @@ int main(int argc, char const *argv[]) {
     // setup lp
     int num_vars;
     std::vector<arc> ys;
-    std::vector<arc> xs;
     std::string now = current_timestamp();
-    setupLP(env, lp, num_vars, distance_matrix, ys, xs, now, 0);
+    setupLP(env, lp, num_vars, distance_matrix, ys, now, 0);
 
     // start the timer and run optimization 
     std::cout << "Solving the following instance: " << file_to_read << std::endl;
